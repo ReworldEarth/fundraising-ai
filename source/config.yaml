@@ -1,0 +1,3 @@
+llm_embedding_model: "mxbai-embed-large"
+llm_chat_model: "mistral-small-latest"
+env_path: "../env/llm.env"
