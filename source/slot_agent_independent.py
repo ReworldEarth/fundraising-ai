@@ -75,7 +75,6 @@ Return a JSON dict:
 }}
 """)
 
-
 slot_state = {
                 "grant_type": None,
                 "region": None,
@@ -118,4 +117,10 @@ if __name__ == "__main__":
         result = structured_llm.invoke(messages)
 
         slot_state = result.get('slot_state')
+        print(slot_state)
         print(result.get('next_question'))
+        print('\n')
+
+
+
+#We're looking for government funding for our marine project
