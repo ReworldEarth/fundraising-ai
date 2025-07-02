@@ -1,0 +1,5 @@
+
+chat_history_output_filename: "chat12"
+chat_history_output_path: "../data/slot_agent_history"
+rating_completion_path: "../data/rating"
+rating_completion_path_filename: "completion"

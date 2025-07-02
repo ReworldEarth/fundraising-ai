@@ -3,12 +3,10 @@ import yaml
 import json
 from dotenv import load_dotenv
 from pathlib import Path
-from langchain.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 from langchain_mistralai.chat_models import ChatMistralAI
 from langchain_core.messages import SystemMessage, HumanMessage,AIMessage
 
 
-output_filename =  'chat6'
 def read_config(config_path='config.yaml'):
     with open(config_path, "r") as f:
         return yaml.load(f, Loader=yaml.Loader)
@@ -113,6 +111,7 @@ def build_json_schema():
 
 def run_chatbot():
     config = read_config()
+    data_config = read_config(config_path='data_config.yaml')
     llm = load_llm(config).with_structured_output(build_json_schema())
     
     slot_state = {
@@ -166,7 +165,7 @@ def run_chatbot():
             chat_history.append(AIMessage(content=final_msg))
             break
 
-    output_path = f"{config['chat_history_output_path']}/{output_filename}.json"
+    output_path = f"{data_config['chat_history_output_path']}/{data_config['output_filename']}.json"
     final_output = {
         "chat_history": [{"role": "user" if isinstance(m, HumanMessage) else "assistant", "content": m.content}
                          for m in chat_history],
